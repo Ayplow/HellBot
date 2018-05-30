@@ -8,7 +8,22 @@ bot.on("ready", async function(){
 });
 
 bot.on("message", async function(message){
-  console.log(message.author.username+": "+message.content)
+  console.log(message.author.username+": "+message.content);
+  if (message.content.charAt(0) === bConfig.prefix){
+    let cmdArray = message.content.split(" ");
+    let cmd = cmdArray[0].slice(1)
+
+    switch(cmd){
+      case "roll":
+        let i = cmdArray[1] || 6;
+        message.channel.send("You rolled a "+Math.ceil(Math.random()*i)+"!");
+        break;
+      case "kick":
+        console.log(message.mentions.members.first().kick());
+        message.channel.send(message.mentions.members.first()+" has been kicked :(");
+        break;
+    }
+  }
 });
 
 bot.login(bConfig.token)
