@@ -22,6 +22,14 @@ bot.on("message", async function(message){
         console.log(message.mentions.members.first().kick());
         message.channel.send(message.mentions.members.first()+" has been kicked :(");
         break;
+      case "embed":
+        let tEmbed = new dLib.RichEmbed();
+        tEmbed.setTitle(cmdArray[1]);
+        message.channel.send("",tEmbed);
+      case "attach":
+        let tAttach = new dLib.Attachment();
+        tAttach.setAttachment(cmdArray[1],cmdArray[1].split("/")[-1]);
+        message.channel.send("",tAttach);
     }
   }
 });
